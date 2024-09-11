@@ -32,9 +32,10 @@ Pages and Features:
             View the list of members (without seeing their ratings).
             View a list of upcoming and past games within the group.
             For group leaders, provide a link to the Game Creation Page.
+            Show the upcoming games in a grid view. 
 
-- Game Creation Page
-        Purpose: Allow group leaders to create new games for their group.
+- Game Creation Dialog
+        Purpose: Allow group leaders to create new games for their group page.
         Features:
             Create a new game by entering date, time, and location.
             Option to auto-divide teams based on a hidden rating system.
@@ -50,6 +51,70 @@ Pages and Features:
             Update game status and team assignments in real-time using Supabase
 
 # Relevant docs
+Supabase backed tables created
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE IF NOT EXISTS users (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    name TEXT,
+    is_group_leader BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+
+CREATE TABLE IF NOT EXISTS groups (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    group_name TEXT NOT NULL,
+    description TEXT,
+    leader_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+
+CREATE TABLE IF NOT EXISTS user_groups (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    group_id UUID REFERENCES groups(id) ON DELETE CASCADE,
+    status TEXT CHECK (status IN ('pending', 'approved')) DEFAULT 'pending',
+    joined_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    UNIQUE (user_id, group_id)
+);
+
+
+CREATE TABLE IF NOT EXISTS games (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    group_id UUID REFERENCES groups(id) ON DELETE CASCADE,
+    game_datetime TIMESTAMP WITH TIME ZONE NOT NULL, -- Combines date and time
+    location TEXT NOT NULL,
+    created_by UUID REFERENCES users(id) ON DELETE CASCADE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+
+CREATE TABLE IF NOT EXISTS game_attendees (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    game_id UUID REFERENCES games(id) ON DELETE CASCADE,
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    check_in_status BOOLEAN DEFAULT FALSE,
+    checked_in_at TIMESTAMP WITH TIME ZONE,
+    team_assignment INTEGER,
+    UNIQUE (game_id, user_id)
+);
+
+
+CREATE TABLE IF NOT EXISTS ratings (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    game_id UUID REFERENCES games(id) ON DELETE CASCADE,
+    rater_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    rated_user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    rating INTEGER CHECK (rating BETWEEN 1 AND 5),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    UNIQUE (game_id, rater_id, rated_user_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_rating ON ratings (game_id, rated_user_id);
 
 # Current File Structure 
 ATHLOS/
