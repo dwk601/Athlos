@@ -50,52 +50,6 @@ Pages and Features:
             Update game status and team assignments in real-time using Supabase
 
 # Relevant docs
-Supabase tables and relationship
-+------------------------+            +------------------------+
-|        users           |            |        groups          |
-+------------------------+            +------------------------+
-| PK | id (UUID)          |<---------- | PK | id (UUID)          |
-|    | email (TEXT)      |            |    | group_name (TEXT)  |
-|    | password (TEXT)   |            |    | description (TEXT) |
-|    | name (TEXT)       |            | FK | leader_id (UUID)  |
-|    | is_group_leader   |            |    | created_at         |
-|    | created_at        |            +------------------------+
-+------------------------+
-           ^ 1
-           |
-           | N
-+------------------------+
-|      user_groups       |
-+------------------------+
-| PK | id (UUID)          |
-| FK | user_id (UUID)     |
-| FK | group_id (UUID)    |
-|    | status (TEXT)      |
-|    | joined_at          |
-+------------------------+
-
-+------------------------+            +------------------------+
-|         games          |            |     game_attendees     |
-+------------------------+            +------------------------+
-| PK | id (UUID)          |            | PK | id (UUID)          |
-| FK | group_id (UUID)    |<---------- | FK | game_id (UUID)    |
-|    | game_datetime      |            | FK | user_id (UUID)    |
-|    | location (TEXT)    |            |    | check_in_status    |
-| FK | created_by (UUID)  |            |    | checked_in_at      |
-|    | created_at         |            |    | team_assignment    |
-+------------------------+            +------------------------+
-
-+------------------------+
-|        ratings         |
-+------------------------+
-| PK | id (UUID)          |
-| FK | game_id (UUID)     |
-| FK | rater_id (UUID)    |
-| FK | rated_user_id (UUID)|
-|    | rating (INTEGER)   |
-|    | created_at         |
-+------------------------+
-
 
 # Current File Structure 
 ATHLOS/
