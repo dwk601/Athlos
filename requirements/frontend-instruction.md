@@ -53,31 +53,40 @@ Pages and Features:
 
 # Current File Structure 
 ATHLOS/
+├── .next/
+├── .vscode/
 ├── app/
+│   ├── dashboard/
+│   │   └── page.tsx
 │   ├── fonts/
+│   ├── login/
+│   │   └── page.tsx
+│   ├── signup/
+│   │   └── page.tsx
 │   ├── favicon.ico
 │   ├── globals.css
 │   ├── layout.tsx
 │   └── page.tsx
 ├── components/
 │   └── ui/
-│       ├── button.tsx
-│       ├── card.tsx
-│       ├── dropdown-menu.tsx
-│       ├── input.tsx
-│       └── skeleton.tsx
+│       ├── footer.tsx
+│       └── header.tsx
 ├── lib/
 │   └── utils.ts
+├── node_modules/
 ├── requirements/
+│   ├── backend-instruction.md
 │   └── frontend-instruction.md
+├── .env.local
 ├── .eslintrc.json
 ├── .gitignore
 ├── components.json
+├── mockup.png
 ├── next-env.d.ts
 ├── next.config.mjs
 ├── package-lock.json
 ├── package.json
-├── postcss.config.mjs
+├── postcss.config.ts
 ├── README.md
 ├── tailwind.config.ts
 └── tsconfig.json
