@@ -2,7 +2,7 @@
 Use this guide to build a web app where sports enthusiasts can join or create groups, view member profiles, and anonymously rate other users, while keeping individual ratings hidden. The app will allow admins to create games, automatically divide teams based on hidden ratings, and track game attendance with a check-in system. Focus on intuitive navigation, a clean UI, and mobile responsiveness to ensure a smooth user experience. The guide covers essential frontend elements like group creation, rating functionality, game setup, team division logic, and check-in workflows.
 
 # Feature Requirements
-- Tech Stack: We will use Typescript, Next.js, Shadcn UI, and Supabase
+- Tech Stack: We will use Typescript, Next.js, Shadcn UI, Kinde auth, and Supabase
 Pages and Features:
 - Home/Landing Page
         Purpose: Introduce Athlos, its features, and provide entry points for users to sign up or log in.
