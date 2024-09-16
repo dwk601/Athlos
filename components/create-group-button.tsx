@@ -46,7 +46,7 @@ export default function CreateGroupButton() {
       const data = await response.json();
       setIsOpen(false);
       router.push(`/groups/${data.id}`);
-      router.refresh(); // Refresh the page to update the group list
+      router.refresh();
     } catch (error) {
       console.error("Error creating group:", error);
       alert(error instanceof Error ? error.message : "Failed to create group. Please try again.");

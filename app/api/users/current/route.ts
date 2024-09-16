@@ -12,39 +12,41 @@ export async function GET() {
 
   const kindeUser = await getUser();
 
-  let { data } = await supabase
+  const { data: initialData, error } = await supabase
     .from("users")
     .select("*")
     .eq("id", kindeUser.id)
     .single();
 
-  const { error } = await supabase
-    .from("users")
-    .select("*")
-    .eq("id", kindeUser.id)
-    .single();
+  let data = initialData;
 
-  if (error && error.code === "PGRST116") {
-    // User not found, create a new user record
-    const { data: newUser, error: createError } = await supabase
-      .from("users")
-      .insert({
-        id: kindeUser.id,
-        email: kindeUser.email,
-        name: kindeUser.given_name
-          ? `${kindeUser.given_name} ${kindeUser.family_name || ""}`
-          : kindeUser.email,
-      })
-      .single();
+  if (error) {
+    if (error.code === "PGRST116") {
+      // User not found, create a new user record
+      const { data: newUser, error: createError } = await supabase
+        .from("users")
+        .insert({
+          id: kindeUser.id,
+          email: kindeUser.email,
+          name: kindeUser.given_name
+            ? `${kindeUser.given_name} ${kindeUser.family_name || ""}`
+            : kindeUser.email,
+          is_group_leader: false,
+        })
+        .single();
 
-    if (createError) {
-      return NextResponse.json({ error: createError.message }, { status: 500 });
+      if (createError) {
+        return NextResponse.json(
+          { error: createError.message },
+          { status: 500 }
+        );
+      }
+
+      data = newUser;
+    } else {
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    data = newUser;
-  } else if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(data);
   }
-
-  return NextResponse.json(data);
 }
