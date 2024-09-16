@@ -10,6 +10,8 @@ Athlos is a web application designed to streamline the management of soccer game
 - **Upcoming Games**: View and manage scheduled matches.
 - **Recent Activities**: Keep track of past games and player performances.
 - **User Authentication**: Secure user authentication powered by Kinde Auth.
+- **Group Management**: Create and join groups for organizing games.
+- **Game Management**: Create and manage games within groups.
 
 ## Tech Stack
 
@@ -66,6 +68,26 @@ Athlos is a web application designed to streamline the management of soccer game
 - `components/`: Reusable React components
 - `lib/`: Utility functions and custom hooks
 - `public/`: Static assets
+- `app/api/`: API routes for backend functionality
+
+## API Routes
+
+Athlos includes several API routes to handle various functionalities:
+
+- **Groups**
+  - `POST /api/groups/create`: Create a new group
+  - `POST /api/groups/join`: Join an existing group
+  - `GET /api/groups/list`: List all groups
+
+- **Games**
+  - `POST /api/games/create`: Create a new game
+  - `POST /api/games/attendees`: Manage game attendees
+  - `GET /api/games/list`: List games for a specific group
+
+- **Users**
+  - `GET /api/users/current`: Get the current authenticated user's data
+
+These API routes are secured using Kinde Auth and interact with the Supabase database.
 
 ## Authentication
 
