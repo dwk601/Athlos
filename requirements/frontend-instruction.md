@@ -63,10 +63,25 @@ ATHLOS/
 ├── .next/
 ├── .vscode/
 ├── app/
-│   ├── api/
-│   │   └── auth/
-│   │       └── [kindeAuth]/
-│   │           └── route.js
+│   ├── api
+│   │   ├── auth\ [KindeAuth]
+│   │   │   └── route.js
+│   │   ├── games
+│   │   │   ├── attendees
+│   │   │   │   └── route.ts
+│   │   │   ├── create
+│   │   │   │   └── route.ts
+│   │   │   ├── list
+│   │   │       └── route.ts
+│   │   ├── groups
+│   │   │   ├── create
+│   │   │   │   └── route.ts
+│   │   │   ├── join
+│   │   │   │   └── route.ts
+│   │   │   ├── list
+│   │   │       └── route.ts
+│   │   ├── users\ current
+│   │       └── route.ts
 │   ├── dashboard/
 │   ├── page.tsx
 │   ├── fonts/

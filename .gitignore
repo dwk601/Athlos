@@ -37,3 +37,4 @@ next-env.d.ts
 
 .vscode
 /requirements
+requirements/frontend-instruction.md
