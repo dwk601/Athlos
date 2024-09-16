@@ -25,7 +25,8 @@ export async function POST(request: Request) {
         { 
           group_name, 
           description, 
-          leader_id: user.id 
+          leader_id: user.id,
+          created_at: new Date().toISOString() 
         }
       ])
       .select()
