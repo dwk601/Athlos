@@ -1,8 +1,7 @@
-import { Button } from "@/components/ui/button";
-import {
-  LoginLink,
-  RegisterLink,
-} from "@kinde-oss/kinde-auth-nextjs/components";
+
+import dynamic from 'next/dynamic';
+
+const AuthButtons = dynamic(() => import('@/components/auth-buttons'), { ssr: false });
 
 export default function Home() {
   return (
@@ -13,12 +12,7 @@ export default function Home() {
         team divisions.
       </p>
       <div className="space-x-4">
-        <Button variant="ghost" asChild>
-          <LoginLink>Sign in</LoginLink>
-        </Button>
-        <Button variant="outline" asChild>
-          <RegisterLink>Get Started</RegisterLink>
-        </Button>
+        <AuthButtons />
       </div>
     </div>
   );

@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { Button } from "./ui/button";
-import {
-  LoginLink,
-  RegisterLink,
-} from "@kinde-oss/kinde-auth-nextjs/components";
+
+import dynamic from 'next/dynamic';
+
+const AuthButtons = dynamic(() => import('./auth-buttons'), { ssr: false });
 
 export default function Header() {
   return (
@@ -13,12 +12,7 @@ export default function Header() {
           Athlos
         </Link>
         <nav>
-          <Button variant="ghost" asChild>
-            <LoginLink>Sign in</LoginLink>
-          </Button>
-          <Button variant="outline" asChild>
-            <RegisterLink>Sign up</RegisterLink>
-          </Button>
+          <AuthButtons />
         </nav>
       </div>
     </header>

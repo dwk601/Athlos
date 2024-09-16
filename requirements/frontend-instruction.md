@@ -116,45 +116,43 @@ CREATE TABLE IF NOT EXISTS ratings (
 
 CREATE INDEX IF NOT EXISTS idx_rating ON ratings (game_id, rated_user_id);
 
-# Current File Structure 
-ATHLOS/
-├── .next/
-├── .vscode/
-├── app/
-│   ├── dashboard/
-│   │   └── page.tsx
-│   ├── fonts/
-│   ├── login/
-│   │   └── page.tsx
-│   ├── signup/
-│   │   └── page.tsx
-│   ├── favicon.ico
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
-├── components/
-│   └── ui/
-│       ├── footer.tsx
-│       └── header.tsx
-├── lib/
-│   └── utils.ts
-├── node_modules/
-├── requirements/
-│   ├── backend-instruction.md
-│   └── frontend-instruction.md
-├── .env.local
-├── .eslintrc.json
-├── .gitignore
-├── components.json
-├── mockup.png
-├── next-env.d.ts
-├── next.config.mjs
-├── package-lock.json
-├── package.json
-├── postcss.config.ts
-├── README.md
-├── tailwind.config.ts
-└── tsconfig.json
+# Current File Structure for Athlos project
+.next/
+.vscode/
+app/
+├── api/
+├── dashboard/
+├── fonts/
+├── favicon.ico
+├── globals.css
+├── layout.tsx
+└── page.tsx
+components/
+├── ui/
+│   ├── footer.tsx
+│   └── header.tsx
+lib/
+├── utils.ts
+└── node_modules/
+requirements/
+├── backend-instruction.md
+└── frontend-instruction.md
+utils/
+└── supabase/
+    └── client.ts
+.env.local
+.eslintrc.json
+.gitignore
+mockup.png
+next-env.d.ts
+next.config.mjs
+package-lock.json
+package.json
+postcss.config.mjs
+README.md
+tailwind.config.ts
+tsconfig.json
+
 
 # Rules
 - All new components should go in /components and be named like example-component.tsx unless otherwise specified 
