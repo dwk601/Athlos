@@ -49,7 +49,11 @@ export default function CreateGroupButton() {
       router.refresh();
     } catch (error) {
       console.error("Error creating group:", error);
-      alert(error instanceof Error ? error.message : "Failed to create group. Please try again.");
+      alert(
+        error instanceof Error
+          ? error.message
+          : "Failed to create group. Please try again."
+      );
     } finally {
       setIsCreating(false);
     }
@@ -60,11 +64,12 @@ export default function CreateGroupButton() {
       <DialogTrigger asChild>
         <Button variant="default">Create New Group</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="max-w-lg">
         <DialogHeader>
           <DialogTitle>Create New Group</DialogTitle>
           <DialogDescription>
-            Enter the details for your new group. Click create when you&apos;re done.
+            Enter the details for your new group. Click create when you&apos;re
+            done.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
