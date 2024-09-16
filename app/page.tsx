@@ -1,19 +1,25 @@
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import { Button } from "@/components/ui/button";
+import {
+  LoginLink,
+  RegisterLink,
+} from "@kinde-oss/kinde-auth-nextjs/components";
 
 export default function Home() {
   return (
     <div className="container mx-auto px-4 py-16">
       <h1 className="text-4xl font-bold mb-6">Welcome to Athlos</h1>
-      <p className="text-xl mb-8">Join or create sports groups, rate players anonymously, and enjoy fair team divisions.</p>
+      <p className="text-xl mb-8">
+        Join or create sports groups, rate players anonymously, and enjoy fair
+        team divisions.
+      </p>
       <div className="space-x-4">
-        <Button asChild>
-          <Link href="/signup">Get Started</Link>
+        <Button variant="ghost" asChild>
+          <LoginLink>Sign in</LoginLink>
         </Button>
         <Button variant="outline" asChild>
-          <Link href="/login">Login</Link>
+          <RegisterLink>Get Started</RegisterLink>
         </Button>
       </div>
     </div>
-  )
+  );
 }
